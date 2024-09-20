@@ -5,11 +5,11 @@ jQuery(document).ready(function($) {
         $(function() {
   
           // Vars
-          var modBtn  = $('#modBtn'),
-              modal   = $('#modal'),
-              close   = modal.find('.close-btn img'),
+          const modBtn = $('#modBtn'),
+              modal = $('#modal'),
+              close = modal.find('.close-btn img'),
               modContent = modal.find('.modal-content');
-          
+
           // open modal when click on open modal button 
           modBtn.on('click', function() {
             modal.css('display', 'block');
@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
           
           // close modal when click on close button or somewhere out the modal content 
           $(document).on('click', function(e) {
-            var target = $(e.target);
+            const target = $(e.target);
             if(target.is(modal) || target.is(close)) {
               modContent.removeClass('modal-animated-in').addClass('modal-animated-out').delay(300).queue(function(next) {
                 modal.css('display', 'none');
@@ -33,12 +33,12 @@ jQuery(document).ready(function($) {
         $('a.scrollTo').on('click', function(){
           
           // data-scrollTo = section scrolling to name
-          var scrollTo = $(this).attr('data-scrollTo');
-          
-          
+          const scrollTo = $(this).attr('data-scrollTo');
+
+
           // toggle active class on and off. added 1/24/17
           $( "a.scrollTo" ).each(function() {
-            if(scrollTo == $(this).attr('data-scrollTo')){
+            if(scrollTo === $(this).attr('data-scrollTo')){
               $(this).addClass('active');
             }else{
               $(this).removeClass('active');

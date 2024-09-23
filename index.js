@@ -20,7 +20,7 @@ app.set('view engine', 'pug');
 
 // Serve index.html from the public folder
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '', 'index.html'));
+    res.sendFile(path.join(__dirname, '', 'index.html', 'templates/blog.html', 'templates/about.html'));
 });
 
 // Error handling for 404

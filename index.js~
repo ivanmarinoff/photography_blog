@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 });
 
 // Corrected Form Submission Route
-app.post('/templates/send-email', (req, res) => {
+app.post('/send-email', (req, res) => {
     const { name, email, message } = req.body;
 
     // Configure the email options

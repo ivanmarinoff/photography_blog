@@ -308,43 +308,83 @@
 </div>
 
 <script>
+    import {express} from "express-useragent";
+    import nodemailer from "nodemailer";
+
     document.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.getElementById('contact');
-    const formContainer = document.getElementById('form-container'); // Updated to target the entire form container
-    const thankYouMessage = document.getElementById('thank-you-message');
-    const modalHeader = document.querySelector('.modal-header'); // Select the modal header separately
+        const contactForm = document.getElementById('contact');
+        const formContainer = document.getElementById('form-container'); // Updated to target the entire form container
+        const thankYouMessage = document.getElementById('thank-you-message');
+        const modalHeader = document.querySelector('.modal-header'); // Select the modal header separately
+        const app = express();
+        const dotenv = require('dotenv');
+        dotenv.config();
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the form from submitting the traditional way
 
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent the form from submitting the traditional way
+            // Capture form data
+            const formData = new FormData(contactForm);
 
-        // Capture form data
-        const formData = new FormData(contactForm);
-
-        // Use fetch to send the form data asynchronously
-        fetch('https://photography-blog-h15z.onrender.com/send-email', {
-            method: 'POST',
-            body: new URLSearchParams(formData),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        })
-            .then(response => response.json())  // Parse the JSON response
-            .then(data => {
-                if (data.success) {
-                    // If email is successfully sent, show the thank you message inside the modal
-                    formContainer.style.display = 'none'; // Hide the form and modal body
-                    modalHeader.style.display = 'none'; // Hide the modal header
-                    thankYouMessage.style.display = 'block'; // Show the thank you message
-                } else {
-                    alert('An error occurred while sending your message. Please try again.');
-                }
+            // Use fetch to send the form data asynchronously
+            fetch('https://photography-blog-h15z.onrender.com/send-email', {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An unexpected error occurred. Please try again later.');
+                .then(response => response.json())  // Parse the JSON response
+                .then(data => {
+                    if (data.success) {
+                        // If email is successfully sent, show the thank you message inside the modal
+                        formContainer.style.display = 'none'; // Hide the form and modal body
+                        modalHeader.style.display = 'none'; // Hide the modal header
+                        thankYouMessage.style.display = 'block'; // Show the thank you message
+                    } else {
+                        alert('An error occurred while sending your message. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An unexpected error occurred. Please try again later.');
+                })
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                host: process.env.EMAIL_HOST,
+                port: process.env.EMAIL_PORT === 465, // true for port 465, false for 587
+                secure: parseInt(process.env.EMAIL_PORT) === 465,
+                auth: {
+                    user: process.env.EMAIL_USER, // Your email address
+                    pass: process.env.EMAIL_PASS  // Your email password or app-specific password
+                }
             });
+
+
+            // Corrected Form Submission Route
+            app.post('/send-email', (req, res) => {
+                const {name, email, message} = req.body;
+
+                // Configure the email options
+                const mailOptions = {
+                    from: process.env.EMAIL_USER,
+                    to: process.env.EMAIL_USER1, // Your Google email address to receive the form messages
+                    subject: `New Contact Form Submission from ${name}`,
+                    text: `You have a new message from:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`
+                };
+
+                // Send the email using Nodemailer
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(500).json({success: false, message: 'Error sending email'});
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                        res.status(200).json({success: true, message: 'Email sent successfully'});
+                    }
+                });
+            });
+        });
     });
-});
 
 
 </script>

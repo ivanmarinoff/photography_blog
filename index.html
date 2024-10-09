@@ -321,7 +321,7 @@
         const formData = new FormData(contactForm);
 
         // Use fetch to send the form data asynchronously
-        fetch('/send-email', {
+        fetch('https://photography-blog-h15z.onrender.com/send-email', {
             method: 'POST',
             body: new URLSearchParams(formData),
             headers: {

@@ -242,7 +242,7 @@
 <footer>
     <div class="container-fluid">
         <div class="col-md-12">
-            <p><em><a href="https://github.com/ivanmarinoff" target="_blank" rel="noopener noreferrer">
+            <p><em><a href="https://github.com/ivanmarinoff/" target="_blank" rel="noopener noreferrer">
                 Copyright &copy; 2024
                 ivanmarinoff</a></em></p>
         </div>
@@ -261,133 +261,120 @@
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-            <h3 class="header-title">Say hello to <em>Me</em></h3>
+            <h3 class="header-title">Contact with <em>Me</em></h3>
             <div class="close-btn"><img src="static/img/close_contact.png" alt=""></div>
         </div>
         <!-- Modal Body -->
         <div class="modal-body">
+            <div class="container">
+        <div class="row">
+            <div class="row-md-4 wow fadeIn">
+                <h1><i class="fa fa-phone"></i><a href="tel:+359898726460"> +359 898 726460</a></h1>
+            </div>
+            <div class="row-md-4 wow fadeIn">
+                <h1><i class="fa fa-envelope-o"></i><a href="mailto:marinoffivan@gmail.com" target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      save_as="marinoffivan@gmail.com"><span> marinoffivan@gmail.com</span></a>
+                </h1>
+            </div>
+            <div class="row-md-4 wow fadeIn">
+                <ul class="social-icon">
+                    <h1><span>Meet me on</span></h1>
+                    <h1><a href="https://facebook.com/ivanmarinoff.studio6/" class="fa fa-facebook" target="_blank"
+                           rel="noopener noreferrer"></a>
+                    </h1>
+                    <h1><a href="https://linkedin.com/in/ivanmarinoff/" class="fa fa-linkedin" target="_blank"
+                           rel="noopener noreferrer"></a></h1>
+                    <h1><a href="https://instagram.com/ivan.marinoff/" class="fa fa-instagram" target="_blank"
+                           rel="noopener noreferrer"></a></h1>
+                    <h1><a href="https://github.com/ivanmarinoff/" class="fa fa-github" target="_blank"
+                           rel="noopener noreferrer"></a></h1>
+                </ul>
+            </div>
+        </div>
+    </div>
             <!-- Form Container -->
-            <div id="form-container">
-                <div class="col-md-6 col-md-offset-3">
-                    <form id="contact" action="/send-email" method="post">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <label for="name"><input name="name" type="text" class="form-control" id="name"
-                                                             placeholder="Your name..." required=""></label>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email"
-                                           placeholder="Your email..." required="">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message"
-                                              placeholder="Your message..." required=""></textarea>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!--            <div id="form-container">-->
+<!--                <div class="col-md-6 col-md-offset-3">-->
+<!--                    <form id="contact" action="/send-email" method="post">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <fieldset>-->
+<!--                                    <label for="name"><input name="name" type="text" class="form-control" id="name"-->
+<!--                                                             placeholder="Your name..." required=""></label>-->
+<!--                                </fieldset>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-12">-->
+<!--                                <fieldset>-->
+<!--                                    <input name="email" type="email" class="form-control" id="email"-->
+<!--                                           placeholder="Your email..." required="">-->
+<!--                                </fieldset>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-12">-->
+<!--                                <fieldset>-->
+<!--                                    <textarea name="message" rows="6" class="form-control" id="message"-->
+<!--                                              placeholder="Your message..." required=""></textarea>-->
+<!--                                </fieldset>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-12">-->
+<!--                                <fieldset>-->
+<!--                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>-->
+<!--                                </fieldset>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
             <!-- Hidden Thank You Message -->
-            <div id="thank-you-message" style="display: none; text-align: center;">
-                <h3>Thank you!</h3>
-                <h1>Your message has been successfully sent. We will get back to you soon.</h1>
-            </div>
+<!--            <div id="thank-you-message" style="display: none; text-align: center;">-->
+<!--                <h3>Thank you!</h3>-->
+<!--                <h1>Your message has been successfully sent. We will get back to you soon.</h1>-->
+<!--            </div>-->
         </div>
     </div>
 </div>
 
-<script>
-    import {express} from "express-useragent";
-    import nodemailer from "nodemailer";
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function () {-->
+<!--    const contactForm = document.getElementById('contact');-->
+<!--    const formContainer = document.getElementById('form-container'); // Updated to target the entire form container-->
+<!--    const thankYouMessage = document.getElementById('thank-you-message');-->
+<!--    const modalHeader = document.querySelector('.modal-header'); // Select the modal header separately-->
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const contactForm = document.getElementById('contact');
-        const formContainer = document.getElementById('form-container'); // Updated to target the entire form container
-        const thankYouMessage = document.getElementById('thank-you-message');
-        const modalHeader = document.querySelector('.modal-header'); // Select the modal header separately
-        const app = express();
-        const dotenv = require('dotenv');
-        dotenv.config();
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent the form from submitting the traditional way
+<!--    contactForm.addEventListener('submit', function (e) {-->
+<!--        e.preventDefault(); // Prevent the form from submitting the traditional way-->
 
-            // Capture form data
-            const formData = new FormData(contactForm);
+<!--        // Capture form data-->
+<!--        const formData = new FormData(contactForm);-->
 
-            // Use fetch to send the form data asynchronously
-            fetch('https://photography-blog-h15z.onrender.com', {
-                method: 'POST',
-                body: new URLSearchParams(formData),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            })
-                .then(response => response.json())  // Parse the JSON response
-                .then(data => {
-                    if (data.success) {
-                        // If email is successfully sent, show the thank you message inside the modal
-                        formContainer.style.display = 'none'; // Hide the form and modal body
-                        modalHeader.style.display = 'none'; // Hide the modal header
-                        thankYouMessage.style.display = 'block'; // Show the thank you message
-                    } else {
-                        alert('An error occurred while sending your message. Please try again.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An unexpected error occurred. Please try again later.');
-                })
-            const transporter = nodemailer.createTransport({
-                service: "Gmail",
-                host: process.env.EMAIL_HOST,
-                port: process.env.EMAIL_PORT === 465, // true for port 465, false for 587
-                secure: parseInt(process.env.EMAIL_PORT) === 465,
-                auth: {
-                    user: process.env.EMAIL_USER, // Your email address
-                    pass: process.env.EMAIL_PASS  // Your email password or app-specific password
-                }
-            });
+<!--        // Use fetch to send the form data asynchronously-->
+<!--        fetch('/send-email', {-->
+<!--            method: 'POST',-->
+<!--            body: new URLSearchParams(formData),-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/x-www-form-urlencoded',-->
+<!--            },-->
+<!--        })-->
+<!--            .then(response => response.json())  // Parse the JSON response-->
+<!--            .then(data => {-->
+<!--                if (data.success) {-->
+<!--                    // If email is successfully sent, show the thank you message inside the modal-->
+<!--                    formContainer.style.display = 'none'; // Hide the form and modal body-->
+<!--                    modalHeader.style.display = 'none'; // Hide the modal header-->
+<!--                    thankYouMessage.style.display = 'block'; // Show the thank you message-->
+<!--                } else {-->
+<!--                    alert('An error occurred while sending your message. Please try again.');-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                console.error('Error:', error);-->
+<!--                alert('An unexpected error occurred. Please try again later.');-->
+<!--            });-->
+<!--    });-->
+<!--});-->
 
 
-            // Corrected Form Submission Route
-            app.post('/send-email', (req, res) => {
-                const {name, email, message} = req.body;
-
-                // Configure the email options
-                const mailOptions = {
-                    from: process.env.EMAIL_USER,
-                    to: process.env.EMAIL_USER1, // Your Google email address to receive the form messages
-                    subject: `New Contact Form Submission from ${name}`,
-                    text: `You have a new message from:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`
-                };
-
-                // Send the email using Nodemailer
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.log(error);
-                        res.status(500).json({success: false, message: 'Error sending email'});
-                    } else {
-                        console.log('Email sent: ' + info.response);
-                        res.status(200).json({success: true, message: 'Email sent successfully'});
-                    }
-                });
-            });
-        });
-    });
-
-
-</script>
+<!--</script>-->
 
 
 <!--<section class="overlay-menu">-->

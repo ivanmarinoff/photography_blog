@@ -13,11 +13,7 @@ dotenv.config();
 
 
 // Middleware
-app.use(cors({
-    origin: 'https://photography-blog-h15z.onrender.com/', // Replace with your actual frontend URL
-    methods: 'POST', // Allow POST requests
-    credentials: true
-})); // Use only if cross-origin requests are needed
+app.use(cors()); // Use only if cross-origin requests are needed
 app.use(useragent.express());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

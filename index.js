@@ -15,7 +15,7 @@ dotenv.config();
 // Middleware
 app.use(cors()); // Use only if cross-origin requests are needed
 app.use(useragent.express());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, ''))); // Serve static files
 app.use(helmet());
@@ -34,12 +34,12 @@ const transporter = nodemailer.createTransport({
 
 // Serve index.html from the root folder
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '', 'index.html', 'send-email.html'));
+    res.sendFile(path.join(__dirname, '', 'index.html'));
 });
 
 // Corrected Form Submission Route
-app.post('/templates/send-email', (req, res) => {
-    const { name, email, message } = req.body;
+app.post('/send-email', (req, res) => {
+    const {name, email, message} = req.body;
 
     // Configure the email options
     const mailOptions = {
@@ -53,12 +53,24 @@ app.post('/templates/send-email', (req, res) => {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
-            res.status(500).send('Error sending email');
+            res.status(500).json({success: false, message: 'Error sending email'});
         } else {
             console.log('Email sent: ' + info.response);
-            res.redirect('/templates/send-email'); // Redirect to the thank you page
+            res.status(200).json({success: true, message: 'Email sent successfully'});
         }
     });
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) {
+    //         console.log(error);
+    //         res.status(500).send('Error sending email');
+    //     } else {
+    //         console.log('Email sent: ' + info.response);
+    //         res.redirect('/send-email'); // Redirect to the thank you page
+    //     }
+    // });
+});
+app.get('/send-email', (req, res) => {
+    res.sendFile(path.join(__dirname, '', 'index.html'));
 });
 
 // Error handling for 404

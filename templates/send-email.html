@@ -2,24 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Email was send</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Email was sent</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7777;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-<!-- Modal -->
-<div id="modal" class="modal">
-    <!-- Modal Content -->
-    <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h3 class="header-title">Your message has been sent to <em>Me</em></h3>
-            <div class="close-btn"><img src="/static/img/close_contact.png" alt=""></div>
-        </div>
-        <!-- Modal Body -->
-        <div class="modal-body">
-            <div class="col-md-6 col-md-offset-3">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well well-sm">
+                <h1 class="header-title">Your message has been sent to <em>Me</em></h1>
+                <div class="close-btn">
+                    <button type="button"><img src="/static/img/close_contact.png" alt="button" onclick="history.back()">
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Place the script at the bottom for better loading -->
+<script>
+    setTimeout(() => {
+        window.location.replace("/");
+    }, 2000); // Redirect back to homepage after 2 seconds
+</script>
+
 </body>
 </html>

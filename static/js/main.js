@@ -61,22 +61,22 @@ jQuery(document).ready(function ($) {
         $(this).toggleClass("active");
         $(".overlay-menu").toggleClass("open");
     });
-    let lastScrollY = window.scrollY;
 
-    // Add a scroll event listener to the window
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
+    $(document).ready(function () {
+        let lastScrollTop = 0;
 
-        if (window.scrollY > lastScrollY) {
-            // When scrolling down, add the 'hidden' class
-            navbar.classList.add('hidden');
-        } else {
-            // When scrolling up, remove the 'hidden' class
-            navbar.classList.remove('hidden');
-        }
+        $(window).on('scroll', function () {
+            const scrollTop = $(this).scrollTop();
 
-        // Update the last scroll position
-        lastScrollY = window.scrollY;
+            if (scrollTop > lastScrollTop) {
+                // User is scrolling down: hide the nav
+                $('nav').addClass('slide-up');
+            } else {
+                // User is scrolling up: show the nav
+                $('nav').removeClass('slide-up');
+            }
+
+            lastScrollTop = scrollTop;
+        });
     });
-
 });

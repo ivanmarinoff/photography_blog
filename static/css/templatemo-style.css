@@ -414,7 +414,7 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  transform: all 0.6s;
+  transition: all 0.6s;
   overflow: scroll;
 }
 
@@ -1285,6 +1285,20 @@ footer a:hover {
 }
 
 
+
+@media (max-width: 480px) {
+            #video-container .video-content h1 {
+                font-size: 1.5em;
+            }
+
+            #video-container .video-content p {
+                font-size: 0.9em;
+            }
+
+            .scroll-icon img {
+                width: 25px; /* Even smaller scroll icon */
+            }
+        }
 
 
 @media (max-width: 530px) {

@@ -1345,10 +1345,16 @@ footer a:hover {
 
     .modal-header h3 {
         margin-top: 15%;
+        font-size: 2em;
+        font-weight: 700;
     }
-
+    .modal-body h1 {
+        font-size: 2em;
+        font-weight: 700;
+    }
     .modal-body input {
         width: 100%;
+
     }
 
     .modal-body textarea {

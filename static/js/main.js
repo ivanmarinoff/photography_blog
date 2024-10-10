@@ -1,65 +1,82 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 
-	'use strict';
+    'use strict';
 
-        $(function() {
-  
-          // Vars
-          const modBtn = $('#modBtn'),
-              modal = $('#modal'),
-              close = modal.find('.close-btn img'),
-              modContent = modal.find('.modal-content');
+    $(function () {
 
-          // open modal when click on open modal button 
-          modBtn.on('click', function() {
+        // Vars
+        const modBtn = $('#modBtn'),
+            modal = $('#modal'),
+            close = modal.find('.close-btn img'),
+            modContent = modal.find('.modal-content');
+
+        // open modal when click on open modal button
+        modBtn.on('click', function () {
             modal.css('display', 'block');
             modContent.removeClass('modal-animated-out').addClass('modal-animated-in');
-          });
-          
-          // close modal when click on close button or somewhere out the modal content 
-          $(document).on('click', function(e) {
+        });
+
+        // close modal when click on close button or somewhere out the modal content
+        $(document).on('click', function (e) {
             const target = $(e.target);
-            if(target.is(modal) || target.is(close)) {
-              modContent.removeClass('modal-animated-in').addClass('modal-animated-out').delay(300).queue(function(next) {
-                modal.css('display', 'none');
-                next();
-              });
+            if (target.is(modal) || target.is(close)) {
+                modContent.removeClass('modal-animated-in').addClass('modal-animated-out').delay(300).queue(function (next) {
+                    modal.css('display', 'none');
+                    next();
+                });
             }
-          });
-          
         });
 
-        // on click event on all anchors with a class of scrollTo
-        $('a.scrollTo').on('click', function(){
-          
-          // data-scrollTo = section scrolling to name
-          const scrollTo = $(this).attr('data-scrollTo');
+    });
+
+    // on click event on all anchors with a class of scrollTo
+    $('a.scrollTo').on('click', function () {
+
+        // data-scrollTo = section scrolling to name
+        const scrollTo = $(this).attr('data-scrollTo');
 
 
-          // toggle active class on and off. added 1/24/17
-          $( "a.scrollTo" ).each(function() {
-            if(scrollTo === $(this).attr('data-scrollTo')){
-              $(this).addClass('active');
-            }else{
-              $(this).removeClass('active');
+        // toggle active class on and off. added 1/24/17
+        $("a.scrollTo").each(function () {
+            if (scrollTo === $(this).attr('data-scrollTo')) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
             }
-          });
-          
-          
-          // animate and scroll to the sectin 
-          $('body, html').animate({
-            
+        });
+
+
+        // animate and scroll to the sectin
+        $('body, html').animate({
+
             // the magic - scroll to section
-            "scrollTop": $('#'+scrollTo).offset().top
-          }, 1000 );
-          return false;
-          
-        })
- 
+            "scrollTop": $('#' + scrollTo).offset().top
+        }, 1000);
+        return false;
 
-        $(".menu-icon").click(function() {
-          $(this).toggleClass("active");
-          $(".overlay-menu").toggleClass("open");
-        });
+    })
+
+
+    $(".menu-icon").click(function () {
+        $(this).toggleClass("active");
+        $(".overlay-menu").toggleClass("open");
+    });
+    let lastScrollY = window.scrollY;
+
+    // Add a scroll event listener to the window
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+
+        if (window.scrollY > lastScrollY) {
+            // When scrolling down, add the 'hidden' class
+            navbar.classList.add('hidden');
+        } else {
+            // When scrolling up, remove the 'hidden' class
+            navbar.classList.remove('hidden');
+        }
+
+        // Update the last scroll position
+        lastScrollY = window.scrollY;
+    });
 
 });

@@ -61,22 +61,4 @@ jQuery(document).ready(function ($) {
         $(this).toggleClass("active");
         $(".overlay-menu").toggleClass("open");
     });
-
-    $(document).ready(function () {
-        let lastScrollTop = 0;
-
-        $(window).on('scroll', function () {
-            const scrollTop = $(this).scrollTop();
-
-            if (scrollTop > lastScrollTop) {
-                // User is scrolling down: hide the nav
-                $('nav').addClass('slide-up');
-            } else {
-                // User is scrolling up: show the nav
-                $('nav').removeClass('slide-up');
-            }
-
-            lastScrollTop = scrollTop;
-        });
-    });
 });

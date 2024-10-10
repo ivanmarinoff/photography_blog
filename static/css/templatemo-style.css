@@ -87,9 +87,6 @@ nav {
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
     transition: transform .5s ease-in-out;
 }
-nav .slide-up {
-  transform: translateY(-60px);
-}
 
 .menu-icon {
     background: transparent;
@@ -105,7 +102,7 @@ nav .slide-up {
 
 @media only screen and (max-width: 768px) {
     nav {
-        display: flex;
+        display: none;
         justify-content: space-between;
         padding: 15px;
     }

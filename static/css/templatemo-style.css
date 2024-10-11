@@ -1325,6 +1325,12 @@ footer a:hover {
     .scroll-icon img {
         width: 30px; /* Smaller scroll icon */
     }
+    .modal-content .close-btn {
+        width: 40px;
+        height: 40px;
+        right: 20px; /* Adjust positioning for smaller screens */
+        top: 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1338,6 +1344,12 @@ footer a:hover {
 
     .scroll-icon img {
         width: 25px; /* Even smaller scroll icon */
+    }
+    .modal-content .close-btn {
+        width: 40px;
+        height: 20px;
+        right: 15px; /* Further adjust positioning */
+        top: 8px;
     }
 }
 
